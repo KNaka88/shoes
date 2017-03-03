@@ -158,7 +158,23 @@
         //desc: update the store_name
         //Input:  "Nordstorm", "Macys"
         //Output: "Macys"
+        function test_update()
+        {
+            // Arrange
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
 
+
+            $store_id = $test_store->getId();
+            $new_store_name = "Macys";
+
+            // Act
+            $test_store->update($new_store_name);
+
+            // Assert
+            $this->assertEquals($new_store_name, $test_store->getStoreName());
+        }
 
 
         ///Test 8 test_delete()

@@ -82,6 +82,8 @@
 
         function update($new_store_name)
         {
+            $query = $GLOBALS['DB']->query("UPDATE stores SET store_name = '{$new_store_name}' WHERE id = {$this->getId()};");
+            $this->store_name = $new_store_name;
 
         }
 
