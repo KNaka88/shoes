@@ -81,7 +81,8 @@
 
         function update($new_brand_name)
         {
-
+            $query = $GLOBALS['DB']->exec("UPDATE brands SET brand_name = '{$new_brand_name}' WHERE id = {$this->getId()};");
+            $this->brand_name = $new_brand_name;
         }
 
 

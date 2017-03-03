@@ -157,6 +157,23 @@
           //desc: update the brand_name
           //Input:  "Nike", "Adidas"
           //Output: "Adidas (object)"
+          function test_update()
+          {
+              // Arrange
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
+
+
+              $brand_id = $test_brand->getId();
+              $new_brand_name = "Adidas";
+
+              // Act
+              $test_brand->update($new_brand_name);
+
+              // Assert
+              $this->assertEquals($new_brand_name, $test_brand->getBrandName());
+          }
 
 
 
