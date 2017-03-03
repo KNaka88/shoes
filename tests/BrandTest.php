@@ -41,6 +41,21 @@
          //Desc: check class Brand is made and check getBrandId() is numeric or not
          //Input: "Nike", "1"
          //Output: true
+         function test_getId()
+         {
+             //Arrange
+             $brand_name = "Nike";
+             $brand_id = 1;
+             $test_brand = new Brand($brand_name, $brand_id);
+
+             //Act
+             $result = $test_brand->getId();
+
+             //Assert
+             $this->assertEquals($brand_id, $result);
+         }
+
+
 
 
 

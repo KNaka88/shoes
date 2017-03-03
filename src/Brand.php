@@ -19,9 +19,9 @@
         }
 
 
-        function getBrandId()
+        function getId()
         {
-            return $this->brand_id;
+            return $this->id;
         }
 
 
