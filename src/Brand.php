@@ -33,17 +33,34 @@
 
         function save()
         {
+          $query = $GLOBALS['DB']->query("SELECT * FROM brands WHERE brand_name = '{$this->getBrandName()}';");
 
+          if(empty($result)){
+            $GLOBALS['DB']->exec("INSERT INTO brands (brand_name) VALUES ('{$this->getBrandName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+          }
         }
 
 
         static function getAll()
         {
+          $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
+          $brands = [];
+
+          foreach($returned_brands as $brand){
+              $id = $brand['id'];
+              $brand_name = $brand['brand_name'];
+              $new_brand = new Brand($brand_name, $id);
+              array_push($brands, $new_brand);
+          }
+          return $brands;
         }
 
 
         static function deleteAll()
         {
+          $GLOBALS['DB']->exec("DELETE FROM brands");
+          $GLOBALS['DB']->exec("DELETE FROM stores_brands");
         }
 
         function delete()

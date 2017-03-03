@@ -17,7 +17,7 @@
         protected function tearDown()
          {
            Brand::deleteAll();
-          //  Brand::deleteAll();
+           Brand::deleteAll();
          }
 
         ///Test 1: test_getBrandName
@@ -56,21 +56,51 @@
          }
 
 
-
-
-
          ////Test 3: test_save
          //Desc: check intance of Brand saved on hair_salon_test database
          //Input:  "Nike", "Adidas"
          //Output: "Nike"
+         function test_save()
+          {
+              //Arrange
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
 
+              $brand_name2 = "Adidas";
+              $test_brand2 = new Brand($brand_name2);
+              $test_brand2->save();
+
+              //Act
+              $result = Brand::getAll();
+
+              //Assert
+              $this->assertEquals($test_brand, $result[0]);
+          }
 
 
          ////Test 4: test_getAll
          //Desc: check getAll function work
          //Input:  "Nike", "Adidas"
          //Output: "Nike", "Adidas"
+         function test_getAll()
+         {
+             // Arrange
+             $brand_name = "Nike";
+             $test_brand = new Brand($brand_name);
+             $test_brand->save();
 
+
+             $brand_name2 = "Adidas";
+             $test_brand2 = new Brand($brand_name2);
+             $test_brand2->save();
+
+             //Act
+             $result = Brand::getAll();
+
+             //Assert
+             $this->assertEquals([$test_brand, $test_brand2], $result);
+         }
 
 
          ///Test 5: test_deleteAll()
