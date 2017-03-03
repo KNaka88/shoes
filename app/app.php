@@ -21,7 +21,15 @@
 
     //INDEX PAGE GET
     $app->get("/", function() use ($app){
-        return $app['twig']->render('index.html.twig');
+        return $app['twig']->render('index.html.twig', array("stores" => Store::getAll()));
     });
+
+    //Create STORE
+    $app->post("/create_store", function() use ($app){
+        $new_store = new Store($_POST['store_name']);
+        $new_store->save();
+        return $app->redirect('/');
+    });
+
 
     return $app;

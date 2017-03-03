@@ -2,10 +2,28 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <title>Shoes Database</title>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="container">
+      <h1>Hello World</h1>
 
+      <form method="post" action="/create_store">
+        <div class="form-group">
+          <label for="store_name">Create Store</label>
+          <input class="form-control" type="text" name="store_name" id="store_name" placeholder="Your Store Name">
+        </div>
+          <button type="submit" class="btn btn-success">Add</button>
+      </form>
+      {% if stores is not empty %}
+        <ul>
+        {% for store in stores %}
+          <li>{{store.getStoreName}}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
   </body>
 </html>
