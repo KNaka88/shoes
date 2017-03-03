@@ -6,6 +6,24 @@
   </head>
   <body>
     <h1>{{brand.getBrandName}}</h1>
+
+    
+    <form method='post' action='/add_store/{{brand.getId}}'>
+      <select class="form-control" id="store_id" name="store_id">
+        {% for store in all_stores %}
+          <option value="{{store.getId}}">{{store.getStoreName}}</option>
+        {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-success">Add Store</button>
+    </form>
+
+    {% if brand_stores is not empty %}
+      <ul>
+        {% for brand_store in brand_stores %}
+          <li>{{brand_store.getStoreName}}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     <a href="/">Back to Top</a>
   </body>
 </html>

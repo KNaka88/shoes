@@ -70,11 +70,18 @@
       return $app->redirect("/brand/".$brand.getId());
     });
     $app->get("/brand/{id}", function($id) use ($app){
+
         $brand = Brand::find($id);
         $stores = $brand->getStores();
-        return $app['twig']->render("brand.html.twig", array("brand"=>$brand, "stores"=>$stores));
+        return $app['twig']->render("brand.html.twig", array("brand"=>$brand, "brand_stores"=>$stores, "all_stores"=>Store::getAll()));
     });
-
+    //Add_Stores
+    $app->post("/add_store/{id}", function($id) use ($app){
+        $brand = Brand::find($id);
+        $store = Store::find($_POST['store_id']);
+        $brand->addStore($store);
+        return $app->redirect("/brand/".$brand->getId());
+    });
 
 
     return $app;
