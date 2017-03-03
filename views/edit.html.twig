@@ -12,7 +12,7 @@
       <form method='post' action='/edit_store/{{store.getId}}'>
         <input type='hidden' name='_method' value='patch'>
         <label for="edit">Edit {{store.getStoreName}}</label>
-        <input id="edit" type='text' name='update' class='form-control'>
+        <input id="edit" type='text' name='update' class='form-control' required>
         <button type="submit" class='btn-info btn btn-block'>Update</button>
     </div>
   </body>
