@@ -13,19 +13,19 @@
         }
 
 
-        function getBrandName()
+        function getStoreName()
         {
             return $this->store_name;
         }
 
 
-        function getBrandId()
+        function getStoreId()
         {
-            return $this->store_id;
+            return $this->id;
         }
 
 
-        function setBrandName($store_name)
+        function setStoreName($store_name)
         {
             $this->store_name = $store_name;
         }
@@ -62,12 +62,12 @@
         }
 
 
-        function addBrand()
+        function addStore()
         {
 
         }
 
-        function getBrands()
+        function getStores()
         {
             //Join Table
         }

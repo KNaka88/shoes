@@ -37,10 +37,23 @@
             $this->assertEquals($store_name, $result);
          }
 
-         ////Test 2: test_getStoreId
-         //Desc: check class Store is made and check getStoreId() is numeric or not
-         //Input: "Nordstorm", "1"
-         //Output: true
+        //  //Test 2: test_getStoreId
+        //  Desc: check class Store is made and check getStoreId() is numeric or not
+        //  Input: "Nordstorm", "1"
+        //  Output: true
+        function test_getStoreId()
+          {
+              //Arrange
+              $store_name = "Nordstorm";
+              $store_id = 1;
+              $test_store = new Store($store_name, $store_id);
+
+              //Act
+              $result = $test_store->getStoreId();
+
+              //Assert
+              $this->assertEquals($store_id, $result);
+          }
 
 
          ////Test 3: test_save
