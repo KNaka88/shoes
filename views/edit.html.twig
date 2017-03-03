@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+    <title>Edit</title>
+  </head>
+  <body>
+    <h3>Edit {{store.getStoreName}} </h3>
+    <div class='container'>
+      <form method='post' action='/edit_store/{{store.getId}}'>
+        <input type='hidden' name='_method' value='patch'>
+        <label for="edit">Edit {{store.getStoreName}}</label>
+        <input id="edit" type='text' name='update' class='form-control'>
+        <button type="submit" class='btn-info btn btn-block'>Update</button>
+    </div>
+  </body>
+</html>

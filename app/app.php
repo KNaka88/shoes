@@ -66,6 +66,20 @@
 
 
 
+    //Edit PAGE
+    $app->get("/edit_store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        return $app['twig']->render("edit.html.twig", array("store"=>$store));
+    });
+    $app->patch("/edit_store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $update_store = $_POST['update'];
+        $store->update($update_store);
+        return $app->redirect("/");
+    });
+
+
+
 
     //Store PAGE
     $app->post("/store/{id}", function($id) use ($app){
