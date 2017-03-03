@@ -19,7 +19,7 @@
         }
 
 
-        function getStoreId()
+        function getId()
         {
             return $this->id;
         }
@@ -63,12 +63,19 @@
           $GLOBALS['DB']->exec("DELETE FROM stores_brands");
         }
 
-        function delete()
-        {
-
-        }
 
         static function find($search_id)
+        {
+            $query = $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$search_id};");
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $id = $result['id'];
+            $store_name = $result['store_name'];
+            $store = new Store($store_name, $id);
+
+            return $store;
+        }
+
+        function delete()
         {
 
         }

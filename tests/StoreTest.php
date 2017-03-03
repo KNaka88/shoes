@@ -41,7 +41,7 @@
         //  Desc: check class Store is made and check getStoreId() is numeric or not
         //  Input: "Nordstorm", "1"
         //  Output: true
-        function test_getStoreId()
+        function test_getId()
           {
               //Arrange
               $store_name = "Nordstorm";
@@ -49,7 +49,7 @@
               $test_store = new Store($store_name, $store_id);
 
               //Act
-              $result = $test_store->getStoreId();
+              $result = $test_store->getId();
 
               //Assert
               $this->assertEquals($store_id, $result);
@@ -134,7 +134,24 @@
         //desc: find matched indexes by using id
         //Input:  "Nordstorm", "Macys"
         //Output: "Nordstorm"
+        function test_find()
+        {
+            // Arrange
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+            $id = $test_store->getId();
 
+            $store_name2 = "Macys";
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            //Act
+            $result = Store::find($id);
+
+            //Assert
+            $this->assertEquals($test_store, $result);
+        }
 
 
         ///Test 7 test_update()
