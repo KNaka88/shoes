@@ -201,37 +201,74 @@
           }
 
 
-          ///Test 9 test_addShop()
-          //desc: add shop to database
-          //Input:  "Nike" (Brand), "Nordstorm" (Shop)
+          ///Test 9 test_addStore()
+          //desc: add store to database
+          //Input:  "Nike" (Brand), "Nordstorm" (Store)
           //Output: "Nordstorm"
-          function test_addShop()
+          function test_addStore()
           {
               $brand_name = "Nike";
               $test_brand = new Brand($brand_name);
               $test_brand->save();
 
-              $shop_name = 'Nordstorm';
-              $test_shop = new Shop($shop_name);
-              $test_shop->save();
+              $store_name = 'Nordstorm';
+              $test_store = new Store($store_name);
+              $test_store->save();
 
-              $test_brand->addShop($test_shop);
-              $result = $test_brand->getShops();
+              $test_brand->addStore($test_store);
+              $result = $test_brand->getStores();
 
-              $this->assertEquals([$test_shop], $result);
+              $this->assertEquals([$test_store], $result);
           }
 
 
 
-          ///Test 10 test_addShop()
-          //desc: add shop to database
+          ///Test 10 test_addStore()
+          //desc: add store to database
               //check it prevents duplication
-          //Input:  "Nike" (Brand), "Nordstorm" x 2 (Shop)
+          //Input:  "Nike" (Brand), "Nordstorm" x 2 (Store)
           //Output: "Nordstorm"
+          function test_addStore_duplicate()
+          {
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
+
+              $store_name = 'Nordstorm';
+              $test_store = new Store($store_name);
+              $test_store->save();
+
+              $test_brand->addStore($test_store);
+              $test_brand->addStore($test_store);
+
+              $result = $test_brand->getStores();
+
+              $this->assertEquals([$test_store], $result);
+          }
 
 
-          ///Test 11 test_getShops()
-          //desc: get shops that associated with the brand
-          //Input:  "Nike" (brand), "Nordstorm"(Shop), "Macys"(Shop)
+          ///Test 11 test_getStores()
+          //desc: get stores that associated with the brand
+          //Input:  "Nike" (brand), "Nordstorm"(Store), "Macys"(Store)
           //Output: "Nordstorm, Macys"
+          function test_getStores()
+          {
+              $brand_name = 'Nike';
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
+
+              $store_name = "Nordstorm";
+              $test_store = new Store($store_name);
+              $test_store->save();
+
+              $store_name2 = 'Macys';
+              $test_store2 = new Store($store_name2);
+              $test_store2->save();
+
+              $test_brand->addStore($test_store);
+              $test_brand->addStore($test_store2);
+              $result = $test_brand->getStores();
+
+              $this->assertEquals([$test_store, $test_store2], $result);
+          }
 }
