@@ -73,7 +73,7 @@
     });
     $app->patch("/edit_store/{id}", function($id) use ($app) {
         $store = Store::find($id);
-        $update_store = $_POST['update'];
+        $update_store = filter_var($_POST['update'], FILTER_SANITIZE_MAGIC_QUOTES);
         $store->update($update_store);
         return $app->redirect("/");
     });
