@@ -29,14 +29,17 @@
           <button type="submit" class="btn btn-success">Add</button>
       </form>
 
+
       <div class="row">
         <div class="col-md-6">
         {% if stores is not empty %}
           <ul>
           {% for store in stores %}
-            <a href="/store/{{store.getId}}"><li>{{store.getStoreName}}</li></a>
+            <a href="/store/{{store.getId}}"><li>{{store.getStoreName}}</a></li>
+            <a href="/delete_store/{{store.getId}}">Delete</a>
           {% endfor %}
           </ul>
+          <a href="delete_all_stores">Delete All Stores</a>
         {% endif %}
         </div>
 
@@ -45,13 +48,13 @@
             <ul>
             {% for brand in brands %}
               <a href="/brand/{{brand.getId}}"><li>{{brand.getBrandName}}</li></a>
+              <a href="/delete_brand/{{brand.getId}}">Delete</a>
             {% endfor %}
+            <a href="delete_all_brands">Delete All Brands</a>
             </ul>
           {% endif %}
         </div>
       </div>
-
-
     </div>
   </body>
 </html>
