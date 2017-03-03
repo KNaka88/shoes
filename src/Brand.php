@@ -63,10 +63,7 @@
           $GLOBALS['DB']->exec("DELETE FROM stores_brands");
         }
 
-        function delete()
-        {
 
-        }
 
         static function find($search_id)
         {
@@ -77,6 +74,12 @@
             $brand = new Brand($brand_name, $id);
 
             return $brand;
+        }
+
+        function delete()
+        {
+          $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->id};");
+          $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->id};");
         }
 
         function update($new_brand_name)

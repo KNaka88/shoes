@@ -181,6 +181,24 @@
           //desc: delete brand_name from database
           //Input:  "Nike", "Adidas"
           //Output: "Adidas"
+          function testDelete()
+          {
+
+              //Arrange
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
+
+              $brand_name2 = "Adidas";
+              $test_brand2 = new Brand($brand_name2);
+              $test_brand2->save();
+
+              //Act
+              $test_brand->delete();
+
+              //Assert
+              $this->assertEquals( [$test_brand2], Brand::getAll());
+          }
 
 
           ///Test 9 test_addShop()
