@@ -227,13 +227,48 @@
             //check it prevents duplication
         //Input:  "Nordstorm" (Store), "Nike" x 2 (Brand)
         //Output: "Nike"
+        function test_addBrand_duplicate()
+        {
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name = 'Nike';
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand);
+            $result = $test_store->getBrands();
+
+            $this->assertEquals([$test_brand], $result);
+        }
 
 
         ///Test 11 test_getBrands()
         //desc: get brands that associated with the store
         //Input:  "Nordstorm" (Store), "Nike"(Brand), "Adidas"(Brand)
         //Output: "Nike, Adidas"
+        function test_getBrands()
+        {
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
 
+            $brand_name = 'Nike';
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            $brand_name2 = 'Adidas';
+            $test_brand2 = new Brand($brand_name2);
+            $test_brand2->save();
+
+            $test_store->addBrand($test_brand);
+            $test_store->addBrand($test_brand2);
+            $result = $test_store->getBrands();
+
+            $this->assertEquals([$test_brand, $test_brand2], $result);
+        }
 
 
 }
