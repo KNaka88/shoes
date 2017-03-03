@@ -205,6 +205,22 @@
           //desc: add shop to database
           //Input:  "Nike" (Brand), "Nordstorm" (Shop)
           //Output: "Nordstorm"
+          function test_addShop()
+          {
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
+
+              $shop_name = 'Nordstorm';
+              $test_shop = new Shop($shop_name);
+              $test_shop->save();
+
+              $test_brand->addShop($test_shop);
+              $result = $test_brand->getShops();
+
+              $this->assertEquals([$test_shop], $result);
+          }
+
 
 
           ///Test 10 test_addShop()
