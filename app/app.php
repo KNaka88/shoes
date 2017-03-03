@@ -19,6 +19,8 @@
     $app['debug'] = true;
 
 
+
+
     //INDEX PAGE GET
     $app->get("/", function() use ($app){
         return $app['twig']->render('index.html.twig', array("stores" => Store::getAll(), "brands" => Brand::getAll()));
@@ -39,6 +41,8 @@
         return $app->redirect('/');
     });
 
+
+
     //Store PAGE
     $app->post("/store/{id}", function($id) use ($app){
       $store = Store::find($id);
@@ -46,8 +50,17 @@
     });
     $app->get("/store/{id}", function($id) use ($app){
         $store = Store::find($id);
-        return $app['twig']->render("store.html.twig", array("store"=>$store));
+        $brands = $store->getBrands();
+        return $app['twig']->render("store.html.twig", array("store"=>$store, "store_brands"=>$brands, "all_brands"=>Brand::getAll()));
     });
+    //Add_Brand
+    $app->post("/add_brand/{id}", function($id) use ($app){
+      $store = Store::find($id);
+      $brand = Brand::find($_POST['brand_id']);
+      $store->addBrand($brand);
+      return $app->redirect("/store/".$store->getId());
+    });
+
 
 
 
@@ -58,7 +71,8 @@
     });
     $app->get("/brand/{id}", function($id) use ($app){
         $brand = Brand::find($id);
-        return $app['twig']->render("brand.html.twig", array("brand"=>$brand));
+        $stores = $brand->getStores();
+        return $app['twig']->render("brand.html.twig", array("brand"=>$brand, "stores"=>$stores));
     });
 
 
