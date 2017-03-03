@@ -70,7 +70,13 @@
 
         static function find($search_id)
         {
+            $query = $GLOBALS['DB']->query("SELECT * FROM brands WHERE id = {$search_id};");
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $id = $result['id'];
+            $brand_name = $result['brand_name'];
+            $brand = new Brand($brand_name, $id);
 
+            return $brand;
         }
 
         function update($new_brand_name)

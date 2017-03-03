@@ -132,6 +132,24 @@
           //desc: find matched indexes by using id
           //Input:  "Nike", "Adidas"
           //Output: "Nike (object)"
+          function test_find()
+          {
+              // Arrange
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
+              $id = $test_brand->getId();
+
+              $brand_name2 = "Adidas";
+              $test_brand2 = new Brand($brand_name2);
+              $test_brand2->save();
+
+              //Act
+              $result = Brand::find($id);
+
+              //Assert
+              $this->assertEquals($test_brand, $result);
+          }
 
 
 
