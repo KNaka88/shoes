@@ -107,7 +107,25 @@
           //Desc: delete all records from brand table
           //Input:  "Nike", "Adidas"
           //Output: ""
+          function test_deleteAll()
+          {
+              // Arrange
+              $brand_name = "Nike";
+              $test_brand = new Brand($brand_name);
+              $test_brand->save();
 
+
+              $brand_name2 = "Adidas";
+              $test_brand2 = new Brand($brand_name2);
+              $test_brand2->save();
+
+              //Act
+              $result = Brand::deleteAll();
+              $result = Brand::getAll();
+
+              //Assert
+              $this->assertEquals([], $result);
+          }
 
 
           ///Test 6 test_find()
