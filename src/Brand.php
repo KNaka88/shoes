@@ -62,12 +62,12 @@
         }
 
 
-        function addBrand()
+        function addShop()
         {
 
         }
 
-        function getBrands()
+        function getShops()
         {
             //Join Table
         }
