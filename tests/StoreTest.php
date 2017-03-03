@@ -205,21 +205,22 @@
         //desc: create instances of brand from instance of Store
         //Input:  "Nordstorm" (Store), "Nike" (Brand)
         //Output: "Nike"
-        // function test_addBrand()
-        // {
-        //     $store_name = "Nordstorm";
-        //     $test_store = new Store($store_name);
-        //     $test_store->save();
-        //
-        //     $brand_name = 'Nike';
-        //     $test_brand = new Brand($brand_name);
-        //     $test_brand->save();
-        //
-        //     $test_store->addBrand($test_brand);
-        //     $result = $test_store->getBrands();
-        //
-        //     $this->assertEquals([$test_brand], $result);
-        // }
+        function test_addBrand()
+        {
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name = 'Nike';
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            $test_store->addBrand($test_brand);
+
+            $result = $test_store->getBrands();
+
+            $this->assertEquals([$test_brand], $result);
+        }
 
         ///Test 10 test_addBrand()
         //desc: create instances of brand from instance of Store
