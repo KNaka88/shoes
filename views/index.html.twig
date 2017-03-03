@@ -9,21 +9,49 @@
   <body>
     <div class="container">
       <h1>Hello World</h1>
-
-      <form method="post" action="/create_store">
+      <!-- Store -->
+      <form method="post" action="/">
         <div class="form-group">
-          <label for="store_name">Create Store</label>
-          <input class="form-control" type="text" name="store_name" id="store_name" placeholder="Your Store Name">
+          <label for="name">Create Store or Brand</label>
+          <input class="form-control" type="text" name="name" id="name" placeholder="Type here">
+          <div class='radio'>
+            <label>
+              <input type="radio" name="type" value="store" checked>
+              Add Store
+            </label>
+          </div>
+          <div class='radio'>
+            <label>
+              <input type="radio" name="type" value="brand">
+              Add Brand
+            </label>
         </div>
           <button type="submit" class="btn btn-success">Add</button>
       </form>
-      {% if stores is not empty %}
-        <ul>
-        {% for store in stores %}
-          <a href="/store/{{store.getId}}"><li>{{store.getStoreName}}</li></a>
-        {% endfor %}
-        </ul>
-      {% endif %}
+
+      <div class="row">
+        <div class="col-md-6">
+        {% if stores is not empty %}
+          <ul>
+          {% for store in stores %}
+            <a href="/store/{{store.getId}}"><li>{{store.getStoreName}}</li></a>
+          {% endfor %}
+          </ul>
+        {% endif %}
+        </div>
+
+        <div class="col-md-6">
+          {% if brands is not empty %}
+            <ul>
+            {% for brand in brands %}
+              <a href="/brand/{{brand.getId}}"><li>{{brand.getBrandName}}</li></a>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+
     </div>
   </body>
 </html>
