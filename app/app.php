@@ -32,4 +32,17 @@
     });
 
 
+    //Store PAGE
+    $app->get("/store/{id}", function($id) use ($app){
+        $store = Store::find($id);
+        return $app['twig']->render("store.html.twig", array("store"=>$store));
+    });
+
+    $app->post("/store/{id}", function($id) use ($app){
+        $store = Store::find($id);
+        return $app->redirect("/store/".$store.getId());
+    });
+
+
+
     return $app;
