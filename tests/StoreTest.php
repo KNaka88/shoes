@@ -14,11 +14,11 @@
 
     class StoreTest extends PHPUnit_Framework_TestCase
     {
-        // protected function tearDown()
-        //  {
-        //    Store::deleteAll();
-        //    Brand::deleteAll();
-        //  }
+        protected function tearDown()
+         {
+           Store::deleteAll();
+           Brand::deleteAll();
+         }
 
         ///Test 1: test_getStoreName
         //Desc: check class Store is made and can call name by getStoreName()
@@ -83,12 +83,51 @@
         //Desc: check getAll function work
         //Input:  "Nordstorm", "Macys"
         //Output: "Nordstorm", "Macys"
+        function test_getAll()
+        {
+            // Arrange
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+
+            $store_name2 = "Macys";
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            //Act
+            $result = Store::getAll();
+
+            //Assert
+            $this->assertEquals([$test_store, $test_store2], $result);
+        }
 
 
         ///Test 5: test_deleteAll()
         //Desc: delete all records from store table
         //Input:  "Nordstorm", "Macys"
         //Output: ""
+        function test_deleteAll()
+        {
+            // Arrange
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+
+            $store_name2 = "Macys";
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            //Act
+            $result = Store::deleteAll();
+            $result = Store::getAll();
+
+
+            //Assert
+            $this->assertEquals([], $result);
+        }
+
 
 
         ///Test 6 test_find()
