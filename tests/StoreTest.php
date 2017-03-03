@@ -181,13 +181,45 @@
         //desc: delete store_name from database
         //Input:  "Nordstorm", "Macys"
         //Output: "Macys"
+        function testDelete()
+        {
 
+            //Arrange
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $store_name2 = "Macys";
+            $test_store2 = new Store($store_name2);
+            $test_store2->save();
+
+            //Act
+            $test_store->delete();
+
+            //Assert
+            $this->assertEquals( [$test_store2], Store::getAll());
+        }
 
 
         ///Test 9 test_addBrand()
         //desc: create instances of brand from instance of Store
         //Input:  "Nordstorm" (Store), "Nike" (Brand)
         //Output: "Nike"
+        function test_addBrand()
+        {
+            $store_name = "Nordstorm";
+            $test_store = new Store($store_name);
+            $test_store->save();
+
+            $brand_name = 'Nike';
+            $test_brand = new Brand($brand_name);
+            $test_brand->save();
+
+            $test_store->addBrand($test_brand);
+            $result = $test_store->getBrands();
+
+            $this->assertEquals([$test_brand], $result);
+        }
 
         ///Test 10 test_addBrand()
         //desc: create instances of brand from instance of Store

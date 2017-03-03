@@ -77,23 +77,29 @@
 
         function delete()
         {
-
+            $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->id};");
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE stores_id = {$this->id};");
         }
 
         function update($new_store_name)
         {
-            $query = $GLOBALS['DB']->query("UPDATE stores SET store_name = '{$new_store_name}' WHERE id = {$this->getId()};");
+            $query = $GLOBALS['DB']->exec("UPDATE stores SET store_name = '{$new_store_name}' WHERE id = {$this->getId()};");
             $this->store_name = $new_store_name;
-
         }
 
 
-        function addStore()
+        function addBrand($brand)
         {
+            $query = $GLOBALS['DB']->query("SELECT * FROM stores_brands WHERE store_id = {$this->id} AND brand_id = {$brand->getId()}");
 
+            $retrieved = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            if(!$retrieved){ //if empty
+                $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$this->id}, {$brand->getId()});");
+            }
         }
 
-        function getStores()
+        function getBrands()
         {
             //Join Table
         }
